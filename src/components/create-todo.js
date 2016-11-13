@@ -1,18 +1,24 @@
 import React from 'react';
 
 export default class CreateTodo extends React.Component{
+
 	render(){
-		return(
-			<form onSubmit={this.handleCreate.bind(this)}>
-				<input type="text" placeholder="Enter task here" ref="createTaskInput" />
-				<button>Add To Do</button>
+		return (
+			<form onSubmit={this.onSubmitCreate.bind(this)}>
+				<input type="text" placeholder="Enter task" className="enterTaskInput" ref="enterTaskInput"/>
+				<button>Add Task</button>
 			</form>
-		)
+
+		);
 	}
 
-	handleCreate(e){
-		e.preventDefault();
-		this.props.createTask(this.refs.createTaskInput.value);
-		this.refs.createTaskInput.value = "";
+	onSubmitCreate(event){
+		event.preventDefault();
+
+		this.props.createTask(this.refs.enterTaskInput.value);
+
+		this.refs.enterTaskInput.value = "";
+
 	}
+
 }
