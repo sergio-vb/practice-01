@@ -1,7 +1,7 @@
 import React from 'react';
-import TodosList from './todos-list';
-import CreateTodo from './create-todo.js';
-import ErrorDisplay from './error-display.js';
+import TodosList from '../components/todos-list';
+import CreateTodo from '../components/create-todo.js';
+import ErrorDisplay from '../components/error-display.js';
 
 
 const todos = [
@@ -15,7 +15,7 @@ const todos = [
 }
 ];
 
-export default class App extends React.Component{
+export default class Todos extends React.Component{
 
 	constructor(props){
 		super(props);
@@ -29,7 +29,7 @@ export default class App extends React.Component{
 	render(){
 		return(
 			<div>
-				<h1>React To Dos App</h1>
+				<h3>React To Dos Practice</h3>
 				
 				<CreateTodo createTask={this.createTask.bind(this)} />
 				<ErrorDisplay error={this.state.error} />
