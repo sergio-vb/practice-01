@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 
 export default class GlobalNav extends React.Component{
 	render(){
-		console.log(this.props);
 		const { location } = this.props;
 		const homepageClass = location.pathname === "/" ? "active" : "";
 		const todosClass = location.pathname.match(/^\/todos/) ? "active" : "";
