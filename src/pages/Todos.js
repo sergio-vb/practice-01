@@ -39,8 +39,7 @@ export default class Todos extends React.Component{
 					todos={this.state.todos}
 					toggleTask={this.toggleTask.bind(this)}
 					saveTask={this.saveTask.bind(this)}
-					deleteTask={this.deleteTask.bind(this)}
-				/>
+					deleteTask={this.deleteTask.bind(this)} />
 			</div>
 		);
 	}
