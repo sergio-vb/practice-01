@@ -18,3 +18,12 @@ render(
 		</Route>
 	</Router>, 
 document.getElementById('app'));
+
+
+/* Another way to use react-dom is to do:
+
+import ReactDOM from "react-dom"
+
+ReactDOM.render(<Router>...</Router>, document.getElementById('app'));
+
+*/

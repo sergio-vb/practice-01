@@ -8,7 +8,14 @@ export default class App extends React.Component{
 		/* pushState can be replaced with replaceState, doesn't get history arrows */
 		/* Can be used as onClick={this.navigate.bind(this)} */
 	}
+
+	/*const containerStyle = {
+		padding: 1em,
+		border: 1px solid #ccc
+	};*/
+		
 	render(){
+
 		return (
 		
 			<div className="container">
@@ -16,7 +23,7 @@ export default class App extends React.Component{
 				<GlobalNav location={this.props.location} />
 				
 				
-				<div>{this.props.children}</div>
+				<div className="mainContent">{this.props.children}</div>
 
 
 				<footer className="well">Footer info 2016</footer>

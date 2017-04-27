@@ -21,7 +21,7 @@ export default class Todos extends React.Component{
 		super(props);
 
 		this.state = {
-			todos, /*This is ES syntax for "todos: todos" */
+			todos, /*This is ES6 syntax for "todos: todos" */
 			error: null
 		}
 	}

@@ -16,7 +16,7 @@ export default class GlobalNav extends React.Component{
 					<ul className="nav navbar-nav">
 						<li className={homepageClass}><Link to="/">Homepage</Link></li>
 						<li className={todosClass}><Link to="todos">Todos</Link></li>
-						<li className={archivesClass}><Link to="archives">Archives</Link></li>
+						<li className={archivesClass}><Link to="archives" activeClassName="archivesActive">Archives</Link></li>
 						<li className={settingsClass}><Link to="settings">Settings</Link></li>
 					</ul>
 
@@ -25,3 +25,11 @@ export default class GlobalNav extends React.Component{
 		)
 	}
 }
+
+/*
+
+Another way to check if a certain route is active is to use props.history:
+
+this.props.history.isActive("archives"); <- Will automatically have true or false
+
+*/
