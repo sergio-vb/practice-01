@@ -8,6 +8,7 @@ export default class GlobalNav extends React.Component{
 		const todosClass = location.pathname.match(/^\/todos/) ? "active" : "";
 		const archivesClass = location.pathname.match(/^\/archives/) ? "active" : "";
 		const settingsClass = location.pathname.match(/^\/settings/) ? "active" : "";
+		const fluxTodosClass = location.pathname.match(/^\/flux-todos/) ? "active" : "";
 
 		return (
 			<nav className="navbar navbar-default">
@@ -17,6 +18,7 @@ export default class GlobalNav extends React.Component{
 						<li className={homepageClass}><Link to="/">Homepage</Link></li>
 						<li className={todosClass}><Link to="todos">Todos</Link></li>
 						<li className={archivesClass}><Link to="archives" activeClassName="archivesActive">Archives</Link></li>
+						<li className={fluxTodosClass}><Link to="flux-todos">Flux Todos</Link></li>
 						<li className={settingsClass}><Link to="settings">Settings</Link></li>
 					</ul>
 

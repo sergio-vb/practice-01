@@ -16,6 +16,10 @@ export default class App extends React.Component{
 		
 	render(){
 
+		const footerStyles = {
+			marginTop: "4em"
+		}
+
 		return (
 		
 			<div className="container">
@@ -26,7 +30,7 @@ export default class App extends React.Component{
 				<div className="mainContent">{this.props.children}</div>
 
 
-				<footer className="well">Footer info 2016</footer>
+				<footer className="well" style={footerStyles}>Footer info 2016</footer>
 
 			</div>
 
