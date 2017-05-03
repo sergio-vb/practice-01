@@ -1,7 +1,7 @@
 import React from 'react';
 import FluxTodo from '../components/Flux-todo';
-import fluxTodoStore from '../stores/FluxTodoStore.js';
-import dispatcher from '../dispatcher'
+import fluxTodoStore from '../stores/FluxTodoStore';
+import * as FluxTodoActions from '../actions/FluxTodoActions';
 
 export default class FluxTodos extends React.Component{
 
@@ -22,7 +22,7 @@ export default class FluxTodos extends React.Component{
 
 	createTodo(){
 		console.log("Flux-todos tried to dispatch an action to create a todo");
-		dispatcher.dispatch({type:"CREATE_TODO", text:"New test todo"});
+		FluxTodoActions.createTodo(Date.now());
 	}
 
 	render(){
