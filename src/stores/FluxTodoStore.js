@@ -1,4 +1,5 @@
 import { EventEmitter } from "events";
+import dispatcher from "../dispatcher";
 
 class FluxTodoStore extends EventEmitter{
 	constructor(){
@@ -6,7 +7,7 @@ class FluxTodoStore extends EventEmitter{
 		this.todos = [
 			{
 				id: 1234567,
-				text: "Study React",
+				text: "Study React and Flux",
 				completed: false
 			},
 			{
@@ -22,11 +23,34 @@ class FluxTodoStore extends EventEmitter{
 		]
 	}
 
+	createTodo(text){
+		const id = Date.now();
+
+		this.todos.push({
+			id,
+			text,
+			complete: false
+		});
+		this.emit("change");
+	}
+
 	getAll(){
 		return this.todos;
+	}
+
+	handleActions(action){
+		console.log("Store received the action:", action );
+		switch (action.type){
+			case "CREATE_TODO":
+				this.createTodo(action.text);
+		}
 	}
 }
 
 const fluxTodoStore = new FluxTodoStore;
+dispatcher.register(fluxTodoStore.handleActions.bind(fluxTodoStore));
+
+window.todoStore = fluxTodoStore;
+window.dispatcher = dispatcher;
 
 export default fluxTodoStore;
