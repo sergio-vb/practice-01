@@ -8,32 +8,52 @@ export default class FluxTodos extends React.Component{
 	constructor(){
 		super();
 		this.state = {
-			todos: fluxTodoStore.getAll()
+			todos: fluxTodoStore.getAll(),
+			loading: false
 		}
 	}
 
 	componentWillMount(){ //Great place to add event listeners
 		fluxTodoStore.on("change", () => {
-			this.setState({
-				todos: fluxTodoStore.getAll()
-			});
+			if(fluxTodoStore.getLoadingState()){
+				this.setState({
+					loading: true
+				})
+			}else{
+				this.setState({
+					todos: fluxTodoStore.getAll(),
+					loading: false
+				});
+			}
 		});
 	}
 
 	createTodo(){
-		console.log("Flux-todos tried to dispatch an action to create a todo");
 		FluxTodoActions.createTodo(Date.now());
+	}
+
+	reloadTodos(){
+		FluxTodoActions.reloadTodos();
 	}
 
 	render(){
 
 		const FluxTodosComponents = this.state.todos.map( (todo) => { return <FluxTodo key={todo.id} {...todo} />});
+		let mainContent = null;
+
+		if (this.state.loading){
+			mainContent = <p>Todos are loading, please wait.</p>
+		}else{
+			mainContent = <ul>{FluxTodosComponents}</ul>
+		}
 
 		return(
 			<div>
 				<h2>Hello!!! Im the Flux Todos Page</h2>
-				<input type="text"/> <button onClick={this.createTodo}>Add To-Do</button>
-				<ul>{FluxTodosComponents}</ul>
+				<input type="text"/> <button onClick={this.reloadTodos}>Reload Todos</button>
+
+				{mainContent}
+				
 			</div>
 		);
 	}

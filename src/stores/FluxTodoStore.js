@@ -21,6 +21,7 @@ class FluxTodoStore extends EventEmitter{
 				completed: true
 			}
 		]
+		this.loading = false;
 	}
 
 	createTodo(text){
@@ -33,9 +34,21 @@ class FluxTodoStore extends EventEmitter{
 		});
 		this.emit("change");
 	}
+	fetchTodos(){
+		this.loading = true;
+		this.emit("change");
+	}
+	receiveTodos(todos){
+		this.todos = todos;
+		this.loading = false;
+		this.emit("change");
+	}
 
 	getAll(){
 		return this.todos;
+	}
+	getLoadingState(){
+		return this.loading;
 	}
 
 	handleActions(action){
@@ -43,6 +56,12 @@ class FluxTodoStore extends EventEmitter{
 		switch (action.type){
 			case "CREATE_TODO":
 				this.createTodo(action.text);
+				break;
+			case "RECEIVE_TODOS":
+				this.receiveTodos(action.todos);
+				break;
+			case "FETCH_TODOS":
+				this.fetchTodos();
 		}
 	}
 }
