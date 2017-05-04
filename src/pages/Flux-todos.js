@@ -7,25 +7,31 @@ export default class FluxTodos extends React.Component{
 
 	constructor(){
 		super();
+		this.getStoreState = this.getStoreState.bind(this);
 		this.state = {
 			todos: fluxTodoStore.getAll(),
 			loading: false
 		}
 	}
 
+	getStoreState(){
+		if(fluxTodoStore.getLoadingState()){
+			this.setState({
+				loading: true
+			})
+		}else{
+			this.setState({
+				todos: fluxTodoStore.getAll(),
+				loading: false
+			});
+		}
+	}
+
 	componentWillMount(){ //Great place to add event listeners
-		fluxTodoStore.on("change", () => {
-			if(fluxTodoStore.getLoadingState()){
-				this.setState({
-					loading: true
-				})
-			}else{
-				this.setState({
-					todos: fluxTodoStore.getAll(),
-					loading: false
-				});
-			}
-		});
+		fluxTodoStore.on("change", this.getStoreState);
+	}
+	componentWillUnmount(){
+		fluxTodoStore.removeListener("change", this.getStoreState);
 	}
 
 	createTodo(){
@@ -53,7 +59,7 @@ export default class FluxTodos extends React.Component{
 				<input type="text"/> <button onClick={this.reloadTodos}>Reload Todos</button>
 
 				{mainContent}
-				
+
 			</div>
 		);
 	}
